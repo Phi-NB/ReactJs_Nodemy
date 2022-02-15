@@ -1,9 +1,7 @@
 import React from 'react';
 
 class item extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+    
 
     render() {
         return (
@@ -15,9 +13,9 @@ class item extends React.Component {
                 <div className="card__work">{this.props.work}</div>
                 <div className="card__socical">
                     <i className='bx bxl-facebook'></i>
-                    <i className='bx bxl-youtube' ></i>
-                    <i className='bx bxl-tiktok' ></i>
-                    <i className='bx bxl-github' ></i>
+                    <i className='bx bxl-youtube'></i>
+                    <i className='bx bxl-tiktok'></i>
+                    <i className='bx bxl-github'></i>
                 </div>
                 <div className="card__contact">
                     <button>Contact me</button>
