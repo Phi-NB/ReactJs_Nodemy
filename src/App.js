@@ -19,7 +19,7 @@ class App extends React.Component {
   start = () => {
     this.process = setInterval(() => {
       this.setState(
-        {time: new Date}
+        {time: new Date ()}
       )
     }, 1000)
   }

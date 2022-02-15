@@ -10,7 +10,6 @@ class calculator extends React.Component {
 
 
     showData = () => {
-        console.log();
     }
 
     
