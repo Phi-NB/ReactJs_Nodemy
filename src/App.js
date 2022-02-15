@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import CalculatorComponent from './components/Calculator/Calculator.js';
+import CardComponent from './components/Card/Card.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  
+class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      time: new Date(),
+    }
+
+    this.process = null
+
+  }
+  start = () => {
+    this.process = setInterval(() => {
+      this.setState(
+        {time: new Date}
+      )
+    }, 1000)
+  }
+
+  end = () => {
+    clearInterval(this.process)
+  }
+  
+  render() {
+    return (
+      <div>
+
+        <h2>Thời gian hiện tại: {this.state.time.toString()}</h2>
+        <button onClick={this.start}>Start</button>
+        <button onClick={this.end}>End</button>
+        
+
+        <CalculatorComponent/>
+        <CardComponent/>,
+      </div>
+      
+    );
+  }
 }
 
-export default App;
+export default App
