@@ -7,7 +7,7 @@ class item extends React.Component {
         return (
             <div className='card'>
                 <div className='card__img'>
-                    <img src={this.props.link}/>
+                    <img alt="avatar" src={this.props.link}/>
                 </div>
                 <div className="card__name">{this.props.name}</div>
                 <div className="card__work">{this.props.work}</div>
