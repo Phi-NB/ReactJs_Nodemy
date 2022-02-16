@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css'
-import Item from './Item.js'
+import Item from './Item.jsx'
 
 class card extends React.Component {
 

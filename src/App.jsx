@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
-import CalculatorComponent from './components/Calculator/Calculator.js';
-import CardComponent from './components/Card/Card.js';
+import CalculatorComponent from './components/Calculator/Calculator.jsx';
+import CardComponent from './components/Card/Card.jsx';
 
   
 class App extends React.Component {
@@ -32,9 +32,9 @@ class App extends React.Component {
     return (
       <div>
 
-        <h2>Thời gian hiện tại: {this.state.time.toString()}</h2>
+        {/* <h2>Thời gian hiện tại: {this.state.time.toString()}</h2>
         <button onClick={this.start}>Start</button>
-        <button onClick={this.end}>End</button>
+        <button onClick={this.end}>End</button> */}
         
 
         <CalculatorComponent/>
