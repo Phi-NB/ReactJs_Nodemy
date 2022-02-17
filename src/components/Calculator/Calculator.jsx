@@ -2,7 +2,9 @@ import React from 'react';
 import '../../App.css'
 import Button from './Button.jsx'
 class Calculator extends React.Component {
-    
+    // constructor (props) {
+    //     super(props)
+    // }
 
     state = {
         input: '',
@@ -31,6 +33,7 @@ class Calculator extends React.Component {
             if (this.state.input !== '') {
                 let result = ''
                 try {
+                    // eslint-disable-next-line no-eval
                     result = eval(this.state.input)
                 }
                 catch (error){
@@ -56,8 +59,9 @@ class Calculator extends React.Component {
                 })
             }
         } else {
+            const newLocal = this.state;
             this.setState({
-                input: this.state.input += valueButton
+                input: newLocal.input += valueButton
             })
         }
     }
