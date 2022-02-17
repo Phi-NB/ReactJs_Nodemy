@@ -9,11 +9,52 @@ class Calculator extends React.Component {
         output: '',
     }
     
-    lisItem = [7, 8, 9, '+', 4, 5, 6, '-', 1, 2, 3, '*', 0, ',', '=', '/']
+    reset = () => {
+        this.setState({
+            input: '',
+            output: ''
+        })
+    }
+
+    delete =  () => {
+        let oldInput = this.state.input
+        let newInput = oldInput.slice(0, oldInput.length - 1)
+        this.setState({
+            input: newInput
+        })
+    }
+
+    litsButton = ['7', '8', '9', '+', '4', '5', '6', '-', '1', '2', '3', '*', '0', '.', '=', '/']
 
     clickButton = (valueButton) => {
-        if(valueButton === '='){
-            
+        if (valueButton === '='){
+            if (this.state.input !== '') {
+                let result = ''
+                try {
+                    result = eval(this.state.input)
+                }
+                catch (error){
+                    this.setState({
+                        output: 'Error',
+                    })
+                }
+
+                if (result === undefined || result === 'Infinity') {
+                    this.setState({
+                        output: 'Error',
+                    })
+                } else {
+                    this.setState({
+                        input: this.state.input,
+                        output: result
+                    })
+                }
+            } else {
+                this.setState({
+                    input: '',
+                    output: ''
+                })
+            }
         } else {
             this.setState({
                 input: this.state.input += valueButton
@@ -21,21 +62,21 @@ class Calculator extends React.Component {
         }
     }
 
-    cal = this.lisItem.map((item) => {
+    cal = this.litsButton.map((item) => {
         return (
             <Button key={item} value={item} handButton={this.clickButton}></Button>
             )
         })
         
-    render(){
+    render () {
 
         return (
             <div className="calculator">
                 <h1 className="title">CALCULATOR</h1>
                 <input value={this.state.input} className='value' disabled placeholder='Phép tính'></input>
-                <input className='result' disabled placeholder='Kết quả'></input>
-                <button className='reset btn'>AC</button>
-                
+                <input className='result' value={this.state.output} disabled placeholder='Kết quả'></input>
+                <button onClick={this.reset} className='reset btn'>AC</button>
+                <button onClick={this.delete} className='delete btn'>C</button>
                 <div className='row'>
                     {this.cal}
                 </div>

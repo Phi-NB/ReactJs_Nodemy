@@ -49,6 +49,13 @@ input{
   
 }
 
+.reset, .delete{
+  margin-top: 10px;
+}
+
+.delete{
+  margin-left: 20px;
+}
 
 
 

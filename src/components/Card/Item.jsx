@@ -19,7 +19,7 @@ class item extends React.Component {
                 </div>
                 <div className="card__contact">
                     <button>Contact me</button>
-                </div>
+                </div>  
             </div>
         ) 
     }
