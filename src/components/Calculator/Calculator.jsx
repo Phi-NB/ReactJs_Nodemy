@@ -2,10 +2,9 @@ import React from 'react';
 import '../../App.css'
 import Button from './Button.jsx'
 class Calculator extends React.Component {
-    // constructor (props) {
-    //     super(props)
-    // }
 
+    
+    litsButton = ['7', '8', '9', '+', '4', '5', '6', '-', '1', '2', '3', '*', '0', '.', '=', '/']
     state = {
         input: '',
         output: '',
@@ -26,7 +25,7 @@ class Calculator extends React.Component {
         })
     }
 
-    litsButton = ['7', '8', '9', '+', '4', '5', '6', '-', '1', '2', '3', '*', '0', '.', '=', '/']
+    
 
     clickButton = (valueButton) => {
         if (valueButton === '='){
@@ -42,7 +41,7 @@ class Calculator extends React.Component {
                     })
                 }
 
-                if (result === undefined || result === 'Infinity') {
+                if (result === undefined || result === Infinity) {
                     this.setState({
                         output: 'Error',
                     })
@@ -59,18 +58,14 @@ class Calculator extends React.Component {
                 })
             }
         } else {
-            const newLocal = this.state;
+            // const newLocal = this.state;
+            let { input } = this.state
             this.setState({
-                input: newLocal.input += valueButton
+                // eslint-disable-next-line no-const-assign
+                input: input += valueButton
             })
         }
-    }
-
-    cal = this.litsButton.map((item) => {
-        return (
-            <Button key={item} value={item} handButton={this.clickButton}></Button>
-            )
-        })
+    } 
         
     render () {
 
@@ -82,7 +77,13 @@ class Calculator extends React.Component {
                 <button onClick={this.reset} className='reset btn'>AC</button>
                 <button onClick={this.delete} className='delete btn'>C</button>
                 <div className='row'>
-                    {this.cal}
+                    {
+                        this.litsButton.map((item) => {
+                            return (
+                                <Button key={item} value={item} handButton={this.clickButton}></Button>
+                                )
+                            })
+                    }
                 </div>
                 
             </div>
