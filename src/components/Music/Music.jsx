@@ -69,18 +69,33 @@ class Music extends React.Component {
     ]
 
     onKeyPress = (valueKey) => {
-        console.log(valueKey);
-    }   
+    } 
+    
+    
+    clickButton = (link) => {
+        let music = new Audio(link)
+        let musicPromise = music.play()
+        if(musicPromise !== undefined) {
+            musicPromise.then(() => {
+                music.play()
+            })
+            .catch(() => {
+                
+            })
+        }     
+    }
 
+    
     render() {
         return (
             <div className="list">
                 {
                     this.listKey.map((key) => {
                         return (
-                            <Button key={key.keyCode} keyCode={key.keyCode} text={key.keyTrigger} onPress={this.onKeyPress} link={key.url}></Button>
+                            <Button key={key.keyCode} clickButton={this.clickButton} keyCode={key.keyCode} text={key.keyTrigger} onPress={this.onKeyPress} link={key.url}></Button>
                         )
                     })
+                    
                 }
             </div>
         )

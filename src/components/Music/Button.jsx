@@ -2,7 +2,7 @@ import React from 'react';
 
 class Button extends React.Component {
 
-
+    // Hàm componentDidMount chạy sau khi hàm render chạy
     componentDidMount() {
         document.addEventListener('keydown', (e) => {
             if (e.keyCode === this.props.keyCode) {
@@ -13,7 +13,7 @@ class Button extends React.Component {
                         music.play()
                     })
                     .catch(() => {
-
+                        
                     })
                 }
             }
@@ -25,8 +25,12 @@ class Button extends React.Component {
         this.props.onPress(this.props.keyCode)
     }
 
+    clickButton = () => {
+        this.props.clickButton(this.props.link)
+    }
+
     render() {
-        return <button onKeyPress={this.onkey} className='key'>{this.props.text}</button>
+        return <button onClick={this.clickButton} onKeyPress={this.onkey} className='key'>{this.props.text}</button>
     }
 }
 
