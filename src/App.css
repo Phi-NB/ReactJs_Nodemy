@@ -154,7 +154,7 @@ body .app .card__contact button:hover {
 
 .list{
   width: 1026px;
-  margin: 0 auto;
+  margin: 100px auto;
 }
 
 .key{
@@ -166,4 +166,13 @@ body .app .card__contact button:hover {
   border: none;
   cursor: pointer;
   background-color: #fff;
+}
+
+.key.active {
+  background-color: #ea7a5b;
+}
+
+.id{
+  background-color: #fff;
+  text-align: center;
 }

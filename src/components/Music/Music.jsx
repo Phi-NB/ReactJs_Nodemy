@@ -3,6 +3,10 @@ import Button from './Button.jsx'
 
 class Music extends React.Component {
 
+    state={
+        id : ''
+    }
+
     listKey = [
         {
             keyCode: 81,
@@ -68,11 +72,8 @@ class Music extends React.Component {
         },
     ]
 
-    onKeyPress = (valueKey) => {
-    } 
-    
-    
-    clickButton = (link) => {
+        
+    clickButton = (link, id) => {
         let music = new Audio(link)
         let musicPromise = music.play()
         if(musicPromise !== undefined) {
@@ -82,21 +83,26 @@ class Music extends React.Component {
             .catch(() => {
                 
             })
-        }     
+        } 
+        this.setState({
+            id: id
+        })
     }
 
     
     render() {
         return (
             <div className="list">
+                
                 {
                     this.listKey.map((key) => {
                         return (
-                            <Button key={key.keyCode} clickButton={this.clickButton} keyCode={key.keyCode} text={key.keyTrigger} onPress={this.onKeyPress} link={key.url}></Button>
+                            <Button key={key.keyCode} clickButton={this.clickButton} keyCode={key.keyCode} text={key.keyTrigger} onPress={this.onKeyPress} link={key.url} title={key.id}></Button>
                         )
                     })
-                    
                 }
+
+                <h2 className='id'>{this.state.id}</h2>
             </div>
         )
     }

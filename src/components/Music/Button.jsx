@@ -2,6 +2,14 @@ import React from 'react';
 
 class Button extends React.Component {
 
+    constructor (props) {
+        super(props);
+        this.state = {
+            class: 'key'
+        }
+        this.onkey = this.onkey.bind(this)
+    }
+
     // Hàm componentDidMount chạy sau khi hàm render chạy
     componentDidMount() {
         document.addEventListener('keydown', (e) => {
@@ -11,6 +19,7 @@ class Button extends React.Component {
                 if(musicPromise !== undefined) {
                     musicPromise.then(() => {
                         music.play()
+                        this.setBackground()
                     })
                     .catch(() => {
                         
@@ -20,17 +29,33 @@ class Button extends React.Component {
         })
     }
     
+    setBackground = () => {
+        this.setState({
+            class: 'key active'
+        })
 
-    onkey = () => {
-        this.props.onPress(this.props.keyCode)
+        let setBackground = setInterval(() => {
+            this.setState({
+                class: 'key'
+            })
+            clearInterval(setBackground)
+        }, 100)
+
+    }
+
+    onkey ()  {
+        this.props.onPress(this.props.title);
     }
 
     clickButton = () => {
-        this.props.clickButton(this.props.link)
+        this.props.clickButton(this.props.link, this.props.title)
+
+        this.setBackground()
+        
     }
 
     render() {
-        return <button onClick={this.clickButton} onKeyPress={this.onkey} className='key'>{this.props.text}</button>
+        return <button onClick={this.clickButton} onKeyPress={this.onkey} className={this.state.class}>{this.props.text}</button>
     }
 }
 
