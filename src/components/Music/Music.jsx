@@ -110,3 +110,12 @@ class Music extends React.Component {
 
 
 export default Music
+
+/**
+ * BTVN: 
+ * Tạo 1 ô search, sau đấy cho phép nhập vào để tìm kiếm tên các nhân vật trong api: https://swapi.dev/api/people
+ * B1: trong didMount phải gọi api load data vào trong state.
+ * // gọi api dùng async/await
+ * B2: tạo 1 ô search, khi search cập nhật lại trong state 1 biến searchKey và dùng searchKey để lọc ra các kết quả đúng trong API trả về
+ * search thì dùng hàm .filter của Array.
+ */

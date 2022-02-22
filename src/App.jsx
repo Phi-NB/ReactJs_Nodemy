@@ -3,6 +3,7 @@ import React from "react";
 import CalculatorComponent from './components/Calculator/Calculator.jsx';
 import CardComponent from './components/Card/Card.jsx';
 import Music from './components/Music/Music.jsx'
+import Search from "./components/Search/Search";
 
   
 class App extends React.Component {
@@ -24,7 +25,7 @@ class App extends React.Component {
       )
     }, 1000)
   }
-
+//          
 
   end = () => {
     clearInterval(this.process)
@@ -39,10 +40,11 @@ class App extends React.Component {
         <button onClick={this.end}>End</button> */}
         
 
-        <CalculatorComponent/>
+        {/* <CalculatorComponent/>
         <CardComponent/>,
-        <Music />
+        <Music /> */}
         
+        <Search/>
       </div>
       
     );

@@ -13,7 +13,7 @@ class Button extends React.Component {
     // Hàm componentDidMount chạy sau khi hàm render chạy
     componentDidMount() {
         document.addEventListener('keydown', (e) => {
-            if (e.keyCode === this.props.keyCode) {
+            if (e.charCode === this.props.keyCode) {
                 let music = new Audio(this.props.link)
                 let musicPromise = music.play()
                 if(musicPromise !== undefined) {
