@@ -14,92 +14,42 @@ class Search extends React.PureComponent {
    
 
     state = {
-        characters: []
+        characters: [],
+        arraySearch: []
     }
 
-    componentDidMount() {
-        async function convert(){
-            try{
-                let data = await fetch('https://swapi.dev/api/people')
-                let dataConvert = await data.json()
-                return dataConvert
-            }
-            catch(err){
-                return err
-            }
+    async componentDidMount() {
+        
+        try{
+            let data = await fetch('https://swapi.dev/api/people')
+            let dataConvert = await data.json()
+            this.setState({
+                characters: dataConvert.results,
+                arraySearch: dataConvert.results
+            })
         }
-        convert()
-            .then(data => {
-                // console.log(data);
-                this.setState({
-                    characters: data.results
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    characters: err
-                })
-            })
+        catch(err){
+            return err
+        }
     }
+    
 
     handleChange = (e) => {
-        // this.state.characters.forEach((character) => {
-        //     let position = character.name.indexOf(e.target.value)
-        //     console.log(character.name , e.target.value);
-        //     if (position !== -1) {
-        //         this.setState({
-        //             characters: [character.name]
-        //         })
-        //     }
-        //     else{
-        //         this.setState({
-        //             characters: []
-        //         })  
-        //     }
-        // })
-
 
         let result = this.state.characters.filter((character) => {
-            return character.name === e.target.value
+            return character.name.includes(e.target.value)
         })
-        console.log(result, e.target.value);
-        
-        if(result.length > 0){
-            this.setState({ characters: result })
-        }
-        else{
-            this.setState({ characters: [] })
-        }
+        this.setState({
+            arraySearch: result
+        })
     }
-
-    // handleChange = (e) => {
-    //     // eslint-disable-next-line react/no-direct-mutation-state
-    //     this.setState({ 
-    //         value: e.target.value
-    //     })
-    // }
-
-    // search = () => {
-    //     let result = this.state.characters.filter((character) => {
-    //         return character.name === this.state.value
-    //     })
-    //     console.log(result, this.state.value);
-        
-    //     if(result.length > 0){
-    //         this.setState({ characters: result })
-    //     }
-    //     else{
-    //         this.setState({ characters: [] })
-    //     }
-    // }
-
 
 
     render() {
         return (
             <div>
                 <input onChange={this.handleChange} className="input_search" type="search" />                                     
-                {this.state.characters.map((character, index) => {
+                {this.state.arraySearch.map((character, index) => {
                     return (
                         <p key={index}>{character.name}</p>
                     )

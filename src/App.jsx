@@ -1,9 +1,12 @@
 import "./App.css";
 import React from "react";
-import CalculatorComponent from './components/Calculator/Calculator.jsx';
-import CardComponent from './components/Card/Card.jsx';
-import Music from './components/Music/Music.jsx'
-import Search from "./components/Search/Search";
+// import CalculatorComponent from './components/Calculator/Calculator.jsx';
+// import CardComponent from './components/Card/Card.jsx';
+// import Music from './components/Music/Music.jsx'
+// import Search from "./components/Search/Search";
+// import Display from "./components/Dislay_content/Dislay.jsx";
+// import CountDown from "./components/Countdown/Count-down";
+import FFunction from './components/Function-Component/Function.jsx'
 
   
 class App extends React.Component {
@@ -44,11 +47,17 @@ class App extends React.Component {
         <CardComponent/>,
         <Music /> */}
         
-        <Search/>
+        {/* <Search/> */}
+
+        {/* <Display/> */}
+
+        {/* <CountDown /> */}
+
+        <FFunction />
       </div>
       
     );
   }
-}
+} 
 
 export default App
