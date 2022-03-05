@@ -219,3 +219,12 @@ body .app .card__contact button:hover {
 .flex .btn-start{
   width: 100px;
 }
+
+
+.todo-list {
+  width: 500px;
+}
+
+.todo-list .btn {
+  width: unset;
+}

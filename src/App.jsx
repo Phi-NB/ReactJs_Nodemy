@@ -6,7 +6,8 @@ import React from "react";
 // import Search from "./components/Search/Search";
 // import Display from "./components/Dislay_content/Dislay.jsx";
 // import CountDown from "./components/Countdown/Count-down";
-import FFunction from './components/Function-Component/Function.jsx'
+// import Function from './components/Function-Component/Function.jsx'
+import Todo_List from './components/Todo-List/Todo-list.jsx'
 
   
 class App extends React.Component {
@@ -53,7 +54,9 @@ class App extends React.Component {
 
         {/* <CountDown /> */}
 
-        <FFunction />
+        {/* <Function /> */}
+
+        <Todo_List />
       </div>
       
     );
