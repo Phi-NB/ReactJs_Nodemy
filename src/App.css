@@ -30,7 +30,7 @@ input{
   background-color: #fff;
 }
 
-.btn{
+.btn1{
   width: 50px;
   height: 50px;
   border: none;
@@ -42,7 +42,7 @@ input{
 .btn-key{
   margin: 8px 6px;
 }
-.row{
+.row1{
   display: flex;
   justify-content: space-between;
   margin: 12px -6px;
@@ -227,4 +227,32 @@ body .app .card__contact button:hover {
 
 .todo-list .btn {
   width: unset;
+}
+
+.login .btn, .register .btn {
+  width: unset;
+}
+
+.login, .register {
+  width: 500px;
+  margin: auto;
+}
+
+.register .btn__login {
+  margin-left: 30px;
+}
+
+.nav {
+  width: 1200px;
+  margin: auto;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px !important;
+
+}
+
+
+.nav .nav-item a { 
+  text-decoration: none;
+  padding: 0 30px
 }

@@ -74,9 +74,9 @@ class Calculator extends React.Component {
                 <h1 className="title">CALCULATOR</h1>
                 <input value={this.state.input} className='value' disabled placeholder='Phép tính'></input>
                 <input className='result' value={this.state.output} disabled placeholder='Kết quả'></input>
-                <button onClick={this.reset} className='reset btn'>AC</button>
-                <button onClick={this.delete} className='delete btn'>C</button>
-                <div className='row'>
+                <button onClick={this.reset} className='reset btn1'>AC</button>
+                <button onClick={this.delete} className='delete btn1'>C</button>
+                <div className='row1'>
                     {
                         this.litsButton.map((item) => {
                             return (
