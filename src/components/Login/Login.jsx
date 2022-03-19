@@ -1,60 +1,63 @@
-import React from 'react';
-import {Button, Form, } from 'react-bootstrap'
-import { useState } from 'react';
-import { useNavigate } from 'react-router'
+import React from "react";
+// import {Button, Form, } from 'react-bootstrap'
+import { useNavigate } from "react-router";
+import { Form, Input, Button } from "antd";
+import login from "../../services/user.js";
+import { useDispatch } from "react-redux";
+import actionCreator from "../../redux/action";
 
+function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-function Login () {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const navigate = useNavigate()
-
-    const handleSubmit = (e) => {        
-        fetch('https://todo-nodemy.herokuapp.com/user/login', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify({
-                "uername": username,
-                "password": password
-            })
-        })
-        .then((response) => {
-            return response.json()
-        })
-        .then((data) => {
-            console.log(data);
-            if (data.error === 'Bad Request') {
-                navigate('/register')
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
+  const onFinish = async (value) => {
+    const result = await login(value.username, value.password);
+    console.log(result);
+    dispatch(actionCreator.loginAction(result.token))
+    if (result.status === 404) {
+      navigate("/register");
     }
+    else {
+        navigate("/home")
+    }
+  };
 
-    return (
-        <div className="login">
-            <h1>Login</h1>
-            <Form onSubmit={e => {e.preventDefault()}}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control value={username} type="text" placeholder="Enter username" onChange={e => setUsername(e.target.value)}/>
-                </Form.Group>
+  return (
+    <div className="login">
+      <h1>Login</h1>
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        // onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
+          <Input />
+        </Form.Item>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control value={password} type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
-                </Form.Group>
-                
-                <Button className="btn__login" variant="primary" type="submit" onClick={handleSubmit}>
-                    Login
-                </Button>
-            </Form>
-        </div>
-    )
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+  );
 }
 
-export default Login
+export default Login;

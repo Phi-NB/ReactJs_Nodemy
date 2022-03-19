@@ -1,48 +1,76 @@
-import React from 'react';
-import {Button, Form } from 'react-bootstrap'
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React from "react";
+// import { Button, Form } from "react-bootstrap";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { Form, Input, Button, Checkbox } from "antd";
 
-function Register () {
+function Register() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState('')
+  const navigate = useNavigate();
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const navigate = useNavigate()
+  const handleSubmit = () => {
+    console.log(username, password);
+    fetch("https://todo-nodemy.herokuapp.com/user/register", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
+  return (
+    <div className="register">
+      <h1>Register</h1>
+      <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
+          <Input />
+        </Form.Item>
 
-    const handleSubmit = (e) => {  
-        
-     }
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          label="Confirm Password"
+          name="Confirm password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-    return (
-        <div className="register">
-            <h1>Register</h1>
-            <Form onSubmit={e => {e.preventDefault()}}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control value={username} type="text" placeholder="Enter username" onChange={e => setUsername(e.target.value)}/>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control value={password} type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
-                </Form.Group>
-
-                <Form.Group className="mb-3" >
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control value={confirmPassword} type="password" placeholder="Confirm Password" onChange={e => setConfirmPassword(e.target.value)}/>
-                </Form.Group>
-                
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                    Register 
-                </Button>
-                <Button className="btn__login" variant="primary" type="submit" onClick={() => {navigate('/login')}}>
-                    Login
-                </Button>
-            </Form>
-        </div>
-    )
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+  );
 }
 
-export default Register
+export default Register;

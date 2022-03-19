@@ -256,3 +256,17 @@ body .app .card__contact button:hover {
   text-decoration: none;
   padding: 0 30px
 }
+
+.register h1{
+  margin: 40px 0;
+ text-align: center;
+}
+
+.login h1{
+  margin: 40px 0;
+ text-align: center;
+}
+
+.app__link {
+  text-decoration: none;
+}
